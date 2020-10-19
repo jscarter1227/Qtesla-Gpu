@@ -1,0 +1,14 @@
+NVCC = nvcc
+GCC = g++
+CUDAFLAGS = -dc -lcuda -Xcompiler -fopenmp -arch=compute_60 -code=sm_60 -O3 -G -g
+
+
+
+obj/fipsGpu.cu.o: src/sha3/fipsGpu.cu src/sha3/fipsGpu.h
+	$(NVCC) $(CUDAFLAGS) src/sha3/fipsGpu.cu -o obj/fipsGpu.cu.o
+
+obj/gauss.cu.o: src/gauss.cu src/gauss.h
+	$(NVCC) $(CUDAFLAGS) src/gauss.cu -o obj/gauss.cu.o	
+
+obj/random.cu.o: src/random/random.cu
+	$(NVCC) $(CUDAFLAGS) src/random/random.cu -o obj/random.cu.o
